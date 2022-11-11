@@ -27,13 +27,8 @@
         $data_arrays =  array("clientId" => intval($clientId),"pieceStatusDescription" => $pieceStatusDescription,"pieceStatusId" => $pieceStatusId);
         $make_calls = callAPI('POST', $URL_SERVICIO . '/api/piecestatus', json_encode($data_arrays)); 
         $responses = json_decode($make_calls, true); 
-
-        
-    
-    
     }
-	
-	
+		
 ?>
 
 <!doctype html>

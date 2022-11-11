@@ -21,7 +21,7 @@
             $_SESSION['token'] = $response["token"];
 			$_SESSION['role'] = $response["role"];
             $_SESSION['userId'] =  $response["userId"];
-            header("location: pieces.php");
+            header("location: welcome.php");
 
         } else {
             // redirigir a la página de que no pudo iniciar sesión.
