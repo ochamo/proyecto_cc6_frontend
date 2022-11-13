@@ -14,7 +14,7 @@ require 'funcs/constantes.php';
 <head>
 
     <meta charset="utf-8">
-    <title>VEHICULOS</title>
+    <title>CITAS</title>
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="loginstyle.css">
@@ -25,33 +25,35 @@ require 'funcs/constantes.php';
         <div class="row">
             <div class="center-block" style="margin-top: 20px;">
                 <img src="img/auto.png" height="120px;">
-                <h1> VEHICULOS </h1>
+                <h1> CITAS </h1>
             </div>
             <div class="col-md-8">
                 <table class="table table-striped">
                     <thead>
                         <tr>
                             
-                            <td>Modelo</td>
-                            <td>Placa</td>
+                            <td>Vehiculo</td>
+                            <td>Dia de la Cita</td>
+                            <td>Hora de la Cita</td>
+                            <td>Locación</td>
                             
                         </tr>
                     </thead>
                     <tbody>
                         <?php
-                        $clientId = $_SESSION['userId'];
-                        $make_callo = callAPI('GET', $URL_SERVICIO . '/api/clientvehicle/' . $clientId, false);
+                        $userId = $_SESSION['userId'];
+                        $make_callo = callAPI('GET', $URL_SERVICIO . '/api/cita/' . $userId, false);
                         $response = json_decode($make_callo, true);
                         ?>
                         <?php foreach ($response['items'] as $opciones): ?>
                             <tr>
-                                <td><?php echo $opciones['modelYear']?></td>
-                                <td><?php echo $opciones['vehiclePlate']?></td>
                                 
-                                <td>
-                                    <button type="button" class="btn btn-warning">Orden de Trabajo</button>
-                                    <button type="button" class="btn btn-danger">Finalizar</button>
-                                </td>
+                                <td><?php echo $opciones['vehiclePlate']?></td>
+                                <td><?php echo $opciones['appointmentDate']?></td>
+                                <td><?php echo $opciones['appointmentTime']?></td>
+                                <td><?php echo $opciones['locationAddress']?></td>
+                                
+                               
                             </tr>
                         <?php endforeach ?>
                     </tbody>

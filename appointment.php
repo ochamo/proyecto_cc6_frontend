@@ -10,17 +10,12 @@
         $clientId = $_SESSION['userId'];
         $appointmentDate = $_POST["appointmentDate"];
         $appointmentTime = $_POST["appointmentTime"];
-        $locationId = $_POST["locationId"];
-        $data_array =  array("userId" => intval($clientId),"appointmentDate" => $appointmentDate,"appointmentTime" => $appointmentTime,"locationId" => $locationId);
-        $make_call = callAPI('POST', $URL_SERVICIO . '/api/cita', json_encode($data_array)); 
-       
-		$clientId = $_SESSION['clientId'];
 		$vehicleId = $_POST["vehicleId"];
-		$vehiclePlate = $_POST["vehiclePlate"];
-        $data_arrays =  array("clientId" => intval($clientId),"vehicleId" => intval($vehicleId),"vehiclePlate" => $vehiclePlate );
-        $make_calls = callAPI('POST', $URL_SERVICIO . '/api/clientvehicle', json_encode($data_arrays)); 
-        $responses = json_decode($make_calls, true); 
-    }
+        $locationId = $_POST["locationId"];
+        $data_array =  array("userId" => intval($clientId), "vehicleId" => intval($vehicleId), "appointmentDate" => $appointmentDate,"appointmentTime" => $appointmentTime,"locationId" => $locationId);
+        $make_call = callAPI('POST', $URL_SERVICIO . '/api/cita', json_encode($data_array)); 
+		$responses = json_decode($make_call, true); 
+	}
 	
 	
 ?>

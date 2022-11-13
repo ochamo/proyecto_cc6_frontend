@@ -55,13 +55,13 @@
 						
 						<?php if($_SESSION['role']=="3") { ?>
 						<ul class='nav navbar-nav'>
-							<li><a href='ordenc.php'><FONT COLOR="white">Ver Citas </FONT></a></li>			
+							<li><a href='citat.php'><FONT COLOR="white">Ver Citas </FONT></a></li>			
 						</ul>
 						<?php } ?>
 						
 						<?php if($_SESSION['role']=="3") { ?>
 						<ul class='nav navbar-nav'>
-							<li><a href='#.php'><FONT COLOR="white"> Orden de Trabajo </FONT></a></li>			
+							<li><a href='ordenc.php'><FONT COLOR="white"> Orden de Trabajo </FONT></a></li>			
 						</ul>
 						<?php } ?>
 
