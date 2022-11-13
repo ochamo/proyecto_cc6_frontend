@@ -49,13 +49,13 @@
 
 						<?php if($_SESSION['role']=="3") { ?>
 						<ul class='nav navbar-nav'>
-							<li><a href='#'><FONT COLOR="white">Ver Vehiculos </FONT></a></li>			
+							<li><a href='vehiclet.php'><FONT COLOR="white">Ver Vehiculos </FONT></a></li>			
 						</ul>
 						<?php } ?>
 						
 						<?php if($_SESSION['role']=="3") { ?>
 						<ul class='nav navbar-nav'>
-							<li><a href='#.php'><FONT COLOR="white">Ver Citas </FONT></a></li>			
+							<li><a href='ordenc.php'><FONT COLOR="white">Ver Citas </FONT></a></li>			
 						</ul>
 						<?php } ?>
 						
@@ -67,7 +67,7 @@
 
 						<?php if($_SESSION['role']=="3") { ?>
 						<ul class='nav navbar-nav'>
-							<li><a href='#.php'><FONT COLOR="white"> Pagar </FONT></a></li>			
+							<li><a href='pagar.php'><FONT COLOR="white"> Pagar </FONT></a></li>			
 						</ul>
 						<?php } ?>
 
@@ -85,6 +85,12 @@
 
 						<?php if($_SESSION['role']=="2") { ?>
 						<ul class='nav navbar-nav'>
+							<li><a href='linea.php'><FONT COLOR="white"> Lineas </FONT></a></li>			
+						</ul>
+						<?php } ?>
+
+						<?php if($_SESSION['role']=="2") { ?>
+						<ul class='nav navbar-nav'>
 							<li><a href='model.php'><FONT COLOR="white">Modelos </FONT></a></li>			
 						</ul>
 						<?php } ?>
@@ -97,7 +103,7 @@
 
 						<?php if($_SESSION['role']=="2") { ?>
 						<ul class='nav navbar-nav'>
-							<li><a href='#.php'><FONT COLOR="white">Citas </FONT></a></li>			
+							<li><a href='asesor.php'><FONT COLOR="white">Citas </FONT></a></li>			
 						</ul>
 						<?php } ?>
 

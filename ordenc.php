@@ -31,8 +31,7 @@ $countOrders = 0;
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <td>#</td>
-                            <td>Cliente</td>
+                            <td>Vehiculo</td>
                             <td>Lugar</td>
                             <td>Fecha</td>
                             <td>Hora</td>
@@ -42,23 +41,19 @@ $countOrders = 0;
                     <tbody>
                         <?php
                         $clientId = $_SESSION['userId'];
-                        $make_callo = callAPI('GET', $URL_SERVICIO . '/api/cita/asesor/'.$clientId, false);
+                        $make_callo = callAPI('GET', $URL_SERVICIO . '/api/cita', false);
                         $response = json_decode($make_callo, true);
-                        $countOrders = count($response['items']);
+                        
                         ?>
                         <?php foreach ($response['items'] as $opciones): 
-                            $advisorModel = $opciones['advisorModel'];
-                            $locationModel = $opciones['locationModel'];?>
+                        ?>
                             <tr>
-                                
-                                <td><?php echo $opciones['appointmentId'] ?></td>
-                                <td><?php echo $advisorModel['advisorName'] . " " . $advisorModel['advisorLastName'] ?></td>
-                                <td><?php echo $locationModel['locationName']?></td>
                                 <td><?php echo $opciones['appointmentDate']?></td>
                                 <td><?php echo $opciones['appointmentTime']?></td>
+                                <td><?php echo $opciones['locationName']?></td>
                                 <td>
                                     <button type="button" class="btn btn-warning">Orden de Trabajo</button>
-                                    <button type="button" class="btn btn-danger">Finalizar</button>
+                                    
                                 </td>
                             </tr>
                         <?php endforeach ?>
@@ -67,12 +62,11 @@ $countOrders = 0;
                 </table>
             </div>
         </div>
-    </div>
-
-    <div class="col-md-9">
+    </div><div class="col-md-9">
                                 <button id="btn-signup" type="submit" class="btn btn-info"><a href='welcome.php'> Regresar al menu </a></button>
 								</div>
-                                
+
+
     <script src="js/bootstrap.min.js"></script>
 </body>
 

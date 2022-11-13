@@ -6,6 +6,7 @@
 	
 	if (!empty($_POST))
     {   
+		echo var_dump($_POST);
         $clientId = $_SESSION['userId'];
         $appointmentDate = $_POST["appointmentDate"];
         $appointmentTime = $_POST["appointmentTime"];
@@ -13,6 +14,12 @@
         $data_array =  array("userId" => intval($clientId),"appointmentDate" => $appointmentDate,"appointmentTime" => $appointmentTime,"locationId" => $locationId);
         $make_call = callAPI('POST', $URL_SERVICIO . '/api/cita', json_encode($data_array)); 
        
+		$clientId = $_SESSION['clientId'];
+		$vehicleId = $_POST["vehicleId"];
+		$vehiclePlate = $_POST["vehiclePlate"];
+        $data_arrays =  array("clientId" => intval($clientId),"vehicleId" => intval($vehicleId),"vehiclePlate" => $vehiclePlate );
+        $make_calls = callAPI('POST', $URL_SERVICIO . '/api/clientvehicle', json_encode($data_arrays)); 
+        $responses = json_decode($make_calls, true); 
     }
 	
 	
@@ -41,6 +48,31 @@
 								<p>Error:</p>
 								<span></span>
 							</div>
+
+							<div class="form-group">
+								<label class="col-md-3 control-label">Vehiculo: </label>
+								<div class="col-md-9">
+								<select name="vehicleId">
+                            	<option value="" selected></option>
+                                <?php
+								 $clientId = $_SESSION['userId'];
+                                 $make_callo = callAPI('GET', $URL_SERVICIO . '/api/clientvehicle/' . $clientId, false);
+                                 $response = json_decode($make_callo, true);
+								 
+                                 
+                                ?>
+
+                                <?php foreach ($response['items'] as $opciones): ?>
+									
+									<option value ="<?php echo $opciones['vehicleId']?>"><?php echo $opciones['vehiclePlate']?></option>
+									<?php echo var_dump($opciones); ?>
+									
+									<?php endforeach ?>
+								</select>
+
+								
+								
+								
 							<div class="form-group">
                             
 								<label for="appointmentDate" class="col-md-3 control-label">Fecha: </label>

@@ -56,7 +56,7 @@
 
                                 <?php foreach ($response['items'] as $opciones): ?>
 									
-									<option value ="<?php echo $opciones['vehicleLineModel']['lineId']?>"><?php echo $opciones['vehicleLineModel']['lineName'] . " ". $opciones['modelYear']?></option>
+									<option value ="<?php echo $opciones['modelId']?>"><?php echo $opciones['vehicleLineModel']['lineName'] . " ". $opciones['modelYear']?></option>
                                     
                                     <?php echo var_dump($opciones); ?>
 									<?php endforeach ?>
