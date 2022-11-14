@@ -4,14 +4,18 @@
 	require 'funcs/funcs.php';
     require 'funcs/constantes.php';
 	
+
 	
 	if (!empty($_POST))
     {   
+		
         $cardNumber = $_POST["cardNumber"];
 		$cardName = $_POST["cardName"];
 		$cardDate = $_POST["cardDate"];
 		$cvv = $_POST["cvv"];
 		$nit = $_POST["nit"];
+		$orderId = $_GET["orderId"];
+		echo "console.log(" . $orderId . ")";
         $data_array =  array("cardNumber" => $cardNumber, "cardName" => $cardName, "cardDate" => $cardDate, "cvv" => $cvv, "nit" => $nit);
         $make_call = callAPI('POST', $URL_SERVICIO . '/api/payment', json_encode($data_array)); 
         $response = json_decode($make_call, true); 

@@ -48,7 +48,7 @@
                                 <td><?php echo $opciones['orderId']?></td>
                                 <td><?php echo $opciones['vehiclePlate']?></td>
                                 <td><?php echo $opciones['total']?></td>
-                                <td><input type="hidden" id="<? echo $opciones['orderId'] ?>" name="orderId" value="<?php $opciones['orderId']?>" /> <button form="payf" id="btn-signup" type="submit" class="btn btn-info">Pagar </button></form></td>
+                                <td><button onclick="runForm(<?php echo $opciones['orderId'] ?>)" id="btn-signup" type="submit" class="btn btn-info">Pagar </button></td>
                                 </tr>
                             <?php
                                endforeach  
@@ -63,6 +63,13 @@
             </div>
             
         </div>
+
+        <script type="text/javascript">
+            console.log(value);
+            function runForm(value) {
+                window.location.href = "pagar.php?orderId=" + value;
+            }
+        </script>
 
                                          
 								<div class="col-md-9">
