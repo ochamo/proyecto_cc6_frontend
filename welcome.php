@@ -109,7 +109,7 @@
 
 						<?php if($_SESSION['role']=="2") { ?>
 						<ul class='nav navbar-nav'>
-							<li><a href='#.php'><FONT COLOR="white"> Orden de trabajo  </FONT></a></li>			
+							<li><a href='asesor-con-ordendetrabajo.php'><FONT COLOR="white"> Orden de trabajo  </FONT></a></li>			
 						</ul>
 						<?php } ?>
 
