@@ -28,7 +28,7 @@
                     <table class ="table">
                         <thead class ="table-success table-striped">
                             <tr>
-
+                                
                             <td>Linea</td>
                             <td> Año </td>
                             <td>Placa</td>
@@ -38,21 +38,21 @@
 
                         <tbody>
                             <?php
-                        $clientId = $_SESSION['userId'];
-                        $make_callo = callAPI('GET', $URL_SERVICIO . '/api/clientvehicle/' . $clientId, false);
-                        $response = json_decode($make_callo, true);
-                        ?>
-                        <?php foreach ($response['items'] as $opciones): ?>
-                            <tr>
-                                <td><?php echo $opciones['lineName']?></td>
-                                <td><?php echo $opciones['modelYear']?></td>
-                                <td><?php echo $opciones['vehiclePlate']?></td>
                                 
-                                <td>
-                                    
-                                </td>
-                            </tr>
-                        <?php endforeach ?>
+                                $userId = $_SESSION['userId'];
+                                $make_callo = callAPI('GET', $URL_SERVICIO . '/api/cita/' . $userId, false);
+                                $response = json_decode($make_callo, true);
+                            ?>
+                             <?php foreach ($response['items'] as $opciones): ?>
+                                <tr>
+                                <td><?php echo $opciones['vehiclePlate']?></td>
+                                <td><?php echo $opciones['appointmentDate']?></td>
+                                <td><?php echo $opciones['appointmentTime']?></td>
+                                <td><?php echo $opciones['locationName']?></td>
+                                </tr>
+                            <?php
+                               endforeach  
+                            ?>    
                             
                         </tbody>
                     </table>
