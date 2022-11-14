@@ -14,6 +14,7 @@ if(!empty($_POST)) {
     echo "<script>console.log(". $data_array['id'] .")</script>";
     $make_call = callAPI("GET", $URL_SERVICIO . "/api/workorder/create/" . $appointmentId, false);
     $response = json_decode($make_call, true);
+    header("Location: asesor-con-ordendetrabajo.php")
 }
 
 
@@ -70,10 +71,11 @@ if(!empty($_POST)) {
                                 <td><?php echo $opciones['appointmentDate'] ?></td>
                                 <td><?php echo $opciones['appointmentTime'] ?></td>
                                 <td>
-                                    <form id="registerWorkOrder" role="form"  action="<?php $_SERVER['PHP_SELF'] ?>" method="GET" autocomplete="off">
+                                    <!--form id="registerWorkOrder" role="form"  action="<?php $_SERVER['PHP_SELF'] ?>" method="GET" autocomplete="off">
                                         <input name="id" id="id" value="<?php echo $opciones['appointmentId'] ?>" hidden />
                                         <button type="submit" class="btn btn-warning">Orden de Trabajo</button>
-                                    </form>
+                                    </form-->
+                                    <button onclick="runForm(<?php echo $opciones['appointmentId'] ?>)" id="btn-signup" type="submit" class="btn btn-info">Pagar </button>
                                 </td>
                             </tr>
                         <?php endforeach ?>
@@ -84,11 +86,24 @@ if(!empty($_POST)) {
             
         </div>
 
+    <form id="createOrder" action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
+        <input id="orderId" name="id" value="0" type="hidden"/>
+    </form>   
     <div class="col-md-9">
         <button id="btn-signup" type="submit" class="btn btn-info"><a href='welcome.php'> Regresar al menu </a></button>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        function runForm(id) {
+            console.log(id);
+            var f = document.getElementById('createOrder');
+            var idI = document.getElementById('orderId');
+            idI.value = id;
+            f.submit();
+            
+        }
+    </script>
 </body>
 
         
