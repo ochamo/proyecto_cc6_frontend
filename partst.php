@@ -28,31 +28,37 @@
                     <table class ="table">
                         <thead class ="table-success table-striped">
                             <tr>
-                            <td>Vehiculo</td>
-                            <td>Dia de la Cita</td>
-                            <td>Hora de la Cita</td>
-                            <td>Locación</td>
+                            <td>Id de Articulo</td>
+                            <td>Nombre del Articulo</td>
+                            <td>Precio</td>
+                            <td>Stock</td>
+                            <td>Año</td>
+                            <td>Modelo</td>
+                            <td>Marca</td>
+                            <td>Descripcion</td>
                                 
                             </tr>                        
                         </thead>
 
                         <tbody>
-                            <?php
+                        <?php
+                        $userId = $_SESSION['userId'];
+                        $make_callo = callAPI('GET', $URL_SERVICIO . '/api/parts/' . $orderId, false);
+                        $response = json_decode($make_callo, true);
+                        ?>
+                        <?php foreach ($response['items'] as $opciones): ?>
+                            <tr>
                                 
-                                $userId = $_SESSION['userId'];
-                                $make_callo = callAPI('GET', $URL_SERVICIO . '/api/cita/' . $userId, false);
-                                $response = json_decode($make_callo, true);
-                            ?>
-                             <?php foreach ($response['items'] as $opciones): ?>
-                                <tr>
-                                <td><?php echo $opciones['vehiclePlate']?></td>
-                                <td><?php echo $opciones['appointmentDate']?></td>
-                                <td><?php echo $opciones['appointmentTime']?></td>
-                                <td><?php echo $opciones['locationName']?></td>
-                                </tr>
-                            <?php
-                               endforeach  
-                            ?>    
+                                <td><?php echo $opciones['articleId']?></td>
+                                <td><?php echo $opciones['articleName']?></td>
+                                <td><?php echo $opciones['price']?></td>
+                                <td><?php echo $opciones['stock']?></td>
+                                <td><?php echo $opciones['year']?></td>
+                                <td><?php echo $opciones['model']?></td>
+                                <td><?php echo $opciones['brand']?></td>
+                                <td><?php echo $opciones['description']?></td>
+                            </tr>
+                        <?php endforeach ?>  
                             
                         </tbody>
                     </table>

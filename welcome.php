@@ -113,11 +113,7 @@
 						</ul>
 						<?php } ?>
 
-						<?php if($_SESSION['role']=="2") { ?>
-						<ul class='nav navbar-nav'>
-							<li><a href='#.php'><FONT COLOR="white"> Facturas </FONT></a></li>			
-						</ul>
-						<?php } ?>
+						
 
 						<ul class='nav navbar-nav navbar-right'>
 							<li><a href='logout.php'>Cerrar Sesi&oacute;n</a></li>

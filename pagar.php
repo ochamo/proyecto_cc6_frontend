@@ -4,15 +4,19 @@
 	require 'funcs/funcs.php';
     require 'funcs/constantes.php';
 	
+
 	
 	if (!empty($_POST))
     {   
+		
         $cardNumber = $_POST["cardNumber"];
 		$cardName = $_POST["cardName"];
 		$cardDate = $_POST["cardDate"];
 		$cvv = $_POST["cvv"];
 		$nit = $_POST["nit"];
-        $data_array =  array("cardNumber" => $cardNumber, "cardName" => $cardName, "cardDate" => $cardDate, "cvv" => $cvv, "nit" => $nit);
+		$orderId = $_GET["orderId"];
+		echo "console.log(" . $orderId . ")";
+        $data_array =  array("cardNumber" => $cardNumber, "cardName" => $cardName, "cardDate" => $cardDate, "cvv" => $cvv, "nit" => $nit, "orderId" => $orderId);
         $make_call = callAPI('POST', $URL_SERVICIO . '/api/payment', json_encode($data_array)); 
         $response = json_decode($make_call, true); 
     }
@@ -65,7 +69,7 @@
 							<div class="form-group">
 								<label for="cardDate" class="col-md-3 control-label">Fecha de Vencimiento: </label>
 								<div class="col-md-9">
-									<input type="date" class="cardDate" name="cardDate" placeholder="Fecha de Vencimiento" required>
+									<input type="text" class="cardDate" name="cardDate" placeholder="Fecha de Vencimiento" required>
 								</div>
 							</div>
 

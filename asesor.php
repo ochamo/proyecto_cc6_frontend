@@ -48,9 +48,11 @@ if(!empty($_POST)) {
                             <td>Fecha</td>
                             <td>Hora</td>
                             <td>Acciones</td>
-                        </tr>
-                    </thead>
-                    <tbody>
+                                
+                            </tr>                        
+                        </thead>
+
+                        <tbody>
                         <?php
                         $clientId = $_SESSION['userId'];
                         $make_callo = callAPI('GET', $URL_SERVICIO . '/api/cita/asesor/' . $clientId, false);
@@ -79,8 +81,8 @@ if(!empty($_POST)) {
                     <p>Revisa tu detalle de trabajo. <b>¡Tienes <?php echo $countOrders ?> Detalles pendientes!</b></p>
                 </table>
             </div>
+            
         </div>
-    </div>
 
     <div class="col-md-9">
         <button id="btn-signup" type="submit" class="btn btn-info"><a href='welcome.php'> Regresar al menu </a></button>
@@ -89,4 +91,6 @@ if(!empty($_POST)) {
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 
+        
+    </body>
 </html>
