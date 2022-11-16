@@ -28,7 +28,7 @@ $countOrders = 0;
                 <H3>Ordenes de trabajo</H3>
             </div>
             <div class="col-md-8">
-                <button type="button" class="btn btn-info">Actualizar</button>
+                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#orderForm">Actualizar</button>
             </div>
             <div class="col-md-8">
                 <table class="table table-striped">
@@ -74,7 +74,6 @@ $countOrders = 0;
         </div>
     </div>
 
-    <!-- Modal -->
     <div class="modal fade" id="orderDetails" tabindex="-1" role="dialog" aria-labelledby="orderDetailsLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -93,6 +92,35 @@ $countOrders = 0;
             </div>
         </div>
     </div>
+
+
+    <div class="modal fade" id="orderForm" tabindex="-1" role="dialog" aria-labelledby="orderFormLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title p-0" id="orderFormLabel">Orden de trabajo</h3>
+                    <button type="button" class="close p-0" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body row mt-0">
+                    <div class="col-12 col-md-7" id="workerorder-form">
+                        <div class="form-group">
+                            <select id="piecetype" name="piecetype" class="mt-3 form-control">
+                            </select>
+                            <select id="piecestatus" name="piecestatus" class="mt-3 form-control">
+                            </select>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 
     <script type="text/javascript">
@@ -122,7 +150,7 @@ $countOrders = 0;
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    url: '/api/workorder/detail/'+ id,
+                    url: '/api/workorder/detail/' + id,
                     method: 'GET'
                 })
             };
@@ -151,6 +179,79 @@ $countOrders = 0;
                     clearInterval(inter);
                 });
         }
+
+        function getPieceType() {
+            const piecetype = document.getElementById('piecetype');
+            let HTMLData = '';
+            const options = {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    url: '/api/piecetype',
+                    method: 'GET'
+                })
+            };
+            fetch('proxy.php', options)
+                .then(res => res.json())
+                .then(({
+                    items
+                }) => {
+                    HTMLData = '<option selected disabled>Selecciona una opción</option>'
+                    items.forEach(({
+                        pieceTypeId,
+                        pieceName
+                    }) => {
+                        HTMLData += `<option value="${pieceTypeId}">${pieceName}</option>`;
+                    });
+                    piecetype.innerHTML = HTMLData;
+                    clearInterval(inter);
+                }).catch(err => {
+                    HTMLData = 'Ocurrio un error al cargar los datos ☹️🥺';
+                    piecetype.innerHTML = HTMLData + " Error: " + err;
+                    clearInterval(inter);
+                });
+        }
+
+        function getPieceStatus() {
+            const piecestatus = document.getElementById('piecestatus');
+            let HTMLData = '';
+            const options = {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    url: '/api/piecestatus',
+                    method: 'GET'
+                })
+            };
+            fetch('proxy.php', options)
+                .then(res => res.json())
+                .then(({
+                    items
+                }) => {
+                    HTMLData = '<option selected disabled>Selecciona una opción</option>'
+                    items.forEach(({
+                        pieceStatusId,
+                        pieceStatusDescription
+                    }) => {
+                        HTMLData += `<option value="${pieceStatusId}">${pieceStatusDescription}</option>`;
+                    });
+                    piecestatus.innerHTML = HTMLData;
+                    clearInterval(inter);
+                }).catch(err => {
+                    HTMLData = 'Ocurrio un error al cargar los datos ☹️🥺';
+                    piecestatus.innerHTML = HTMLData + " Error: " + err;
+                    clearInterval(inter);
+                });
+        }
+
+        getPieceType();
+        getPieceStatus();
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
