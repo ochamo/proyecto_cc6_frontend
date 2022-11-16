@@ -6,13 +6,20 @@ require 'funcs/constantes.php';
 
 $countOrders = 0;
 
+if (!empty($_GET)) {
+    $orderId = $_GET['orderId'];
+    echo 'orderId = ' . $orderId;
+} else {
+    header("Location: welcome.php");
+}
+
 ?>
 
 <!DOCTYPE html>
 <html>
     <head>
     <meta charset="utf-8">
-    <title>ORDEN DE TRABAJO</title>
+    <title>Buscar Catalogo</title>
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="loginstyle.css">

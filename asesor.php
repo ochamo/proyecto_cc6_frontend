@@ -14,7 +14,7 @@ if(!empty($_POST)) {
     echo "<script>console.log(". $data_array['id'] .")</script>";
     $make_call = callAPI("GET", $URL_SERVICIO . "/api/workorder/create/" . $appointmentId, false);
     $response = json_decode($make_call, true);
-    header("Location: asesor-con-ordendetrabajo.php")
+    header("Location: asesor-con-ordendetrabajo.php");
 }
 
 
@@ -75,7 +75,7 @@ if(!empty($_POST)) {
                                         <input name="id" id="id" value="<?php echo $opciones['appointmentId'] ?>" hidden />
                                         <button type="submit" class="btn btn-warning">Orden de Trabajo</button>
                                     </form-->
-                                    <button onclick="runForm(<?php echo $opciones['appointmentId'] ?>)" id="btn-signup" type="submit" class="btn btn-info">Pagar </button>
+                                    <button onclick="runForm(<?php echo $opciones['appointmentId'] ?>)" id="btn-signup" type="submit" class="btn btn-info">Orden de trabajo </button>
                                 </td>
                             </tr>
                         <?php endforeach ?>
